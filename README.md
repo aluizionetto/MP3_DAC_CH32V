@@ -2,8 +2,9 @@
 
 Decodificação de MP3 usando [CH32V305](https://www.wch-ic.com/products/CH32V307.html)
 
-![Revisão R5](MP3_dac_CH32V305FBP6_r5/User/main.c) - Usa flash externa W25Q64 com arquivo mp3, execução em loop
-![Revisão R6](MP3_dac_CH32V305FBP6_r6/User/main.c)- Usa cartão SD de 8GB, executa todos arquivos com extensão MP3 presentes no cartão.
+[Revisão R5](MP3_dac_CH32V305FBP6_r5/User/main.c) - Usa flash externa W25Q64 com arquivo mp3, execução em loop
+
+[Revisão R6](MP3_dac_CH32V305FBP6_r6/User/main.c)- Usa cartão SD de 8GB, executa todos arquivos com extensão MP3 presentes no cartão.
 
 Saída de audio mono, usando DAC de 12 bits do CH32V305FBP6.
 
