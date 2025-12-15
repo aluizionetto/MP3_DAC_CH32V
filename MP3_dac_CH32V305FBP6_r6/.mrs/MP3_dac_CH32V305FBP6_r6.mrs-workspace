@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "MP3_dac_CH32V305FBP6_r6",
+			"path": "c:\\Users\\aluiz\\mounriver-studio-projects\\MP3_dac_CH32V305FBP6_r6"
+		}
+	],
+	"settings": {
+		"mrs.workspace.type": "project",
+		"files.associations": {
+			"*.c": "c",
+			"*.h": "cpp",
+			"*.hxx": "cpp",
+			"*.hpp": "cpp",
+			"*.c++": "cpp",
+			"*.cpp": "cpp",
+			"*.cxx": "cpp",
+			"*.cc": "cpp",
+			"*.hh": "cpp",
+			"*.h++": "cpp"
+		}
+	}
+}
