@@ -10,7 +10,7 @@ Saída de audio mono, usando DAC de 12 bits do CH32V305FBP6.
 
 Para decodificação do MP3 foi utilizada biblioteca [minimp3] (https://github.com/lieff/minimp3) para ler e listar arquivos do cartão SD foi utilizada biblioteca [Petit FAT File System Module] (https://elm-chan.org/fsw/ff/00index_p.html)
 
-Para programação e criação do firmware foi utilizado a IDE [Mounriver Studio](https://www.mounriver.com/) disponibiliozada pelo fabricante [WCH](https://www.wch-ic.com/). A decodificação de MP3 só é possivel devido a FPU presente no microcontrolador, pois a biblioteca minimp3 trbalha com operações emponto flutuante e é destinada para aplicações em PC.
+Para a programação e criação do firmware foi utilizado a IDE [Mounriver Studio](https://www.mounriver.com/) disponibiliozada pelo fabricante [WCH](https://www.wch-ic.com/). A decodificação de MP3, neste projeto, só é possível devido a FPU presente no microcontrolador, pois a biblioteca minimp3 trabalha com operações em ponto flutuante e foi desenvolvida para aplicações em PC.
 
 ## Diagrama de montagem
 ![Digrama de montagem comcartão SD](DOCS/MP3_CH32V305_SCH_r1.png)
