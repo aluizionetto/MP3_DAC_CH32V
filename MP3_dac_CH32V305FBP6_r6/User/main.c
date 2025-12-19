@@ -31,7 +31,7 @@ uint32_t flash_ok = 1;
 
 #define N_BUF_AUDIO_SAMPLES (1280)
 SBUFF audio_samples;
-__attribute__ ((aligned (4))) int16_t ar_audio_samples[N_BUF_AUDIO_SAMPLES];
+__attribute__ ((aligned (4))) uint16_t ar_audio_samples[N_BUF_AUDIO_SAMPLES];
 
 //SD
 const char dir_raiz[] = "";
@@ -170,6 +170,13 @@ void GPIO_Toggle_INIT (void) {
     GPIO_Init (GPIOC, &GPIO_InitStructure);
 
     GPIO_WriteBit (GPIOC, GPIO_Pin_8 | GPIO_Pin_7, Bit_SET);
+
+
+    //Entrada de bot?o para pular faixa
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init (GPIOC, &GPIO_InitStructure);
+
 }
 
 /*********************************************************************
@@ -298,6 +305,8 @@ int main (void) {
                     // printf ("Inicia repro \r\n");
                     for (k_sample = 0; k_sample < frame_size; k_sample++) {
                         sam = (((int32_t)pcm[k_sample * 2] + (int32_t)pcm[k_sample * 2 + 1]) >> 5) + 2047;
+                        if(sam > 4095) sam = 4095;
+                        if(sam < 0) sam = 0;
                         put_sample_FIFO (&audio_samples, &sam);
                     }
 
@@ -328,6 +337,8 @@ int main (void) {
                     if (info.channels == 2) {
                         for (k_sample = 0; k_sample < frame_size; k_sample++) {
                             sam = (((int32_t)pcm[k_sample * 2] + (int32_t)pcm[k_sample * 2 + 1]) >> 5) + 2047;
+                            if(sam > 4095) sam = 4095;
+                            if(sam < 0) sam = 0;
                             put_sample_FIFO (&audio_samples, &sam);
                         }
                     }
@@ -335,6 +346,8 @@ int main (void) {
                     else {
                         for (k_sample = 0; k_sample < frame_size; k_sample++) {
                             sam = (pcm[k_sample] >> 4) + 2047;
+                            if(sam > 4095) sam = 4095;
+                            if(sam < 0) sam = 0;
                             put_sample_FIFO (&audio_samples, &sam);
                         }
                     }
@@ -345,6 +358,16 @@ int main (void) {
                     estado_mp3 = 0;
                 }
                 break;
+            }
+
+            //verifca bot?o para pular faixa
+            if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6) == RESET){
+                TIM_Cmd (TIM4, DISABLE);
+                DMA_Cmd (DMA2_Channel4, DISABLE);
+                Delay_Ms(10);
+                while(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6) == RESET);
+                break;
+
             }
 
 

@@ -319,6 +319,8 @@ int main(void)
                     printf("Inicia repro \r\n");
                     for (k_sample = 0; k_sample < frame_size;k_sample++) {
                         sam = (((int32_t)pcm[k_sample*2] + (int32_t)pcm[k_sample*2+1]) >> 5)+2047;
+						 if(sam > 4095) sam = 4095;
+                         if(sam < 0) sam = 0;
                         put_sample_FIFO(&audio_samples, &sam);
                     }
 
@@ -347,6 +349,8 @@ int main(void)
                     while (n_sample_out_FIFO(&audio_samples) < frame_size);
                     for (k_sample = 0; k_sample < frame_size;k_sample++) {
                         sam = (((int32_t)pcm[k_sample*2] + (int32_t)pcm[k_sample*2+1]) >> 5)+2047;
+						 if(sam > 4095) sam = 4095;
+                         if(sam < 0) sam = 0;
                         put_sample_FIFO(&audio_samples, &sam);
                     }
 
