@@ -274,6 +274,7 @@ int main (void) {
         mp3dec_init (&mp3d);  // inicializa decodificador
         nbuf = 0;
         pread = 0;
+        estado_mp3 = 0;
         printf ("Iniciando decodificacao...\r\n");
 
         do {
